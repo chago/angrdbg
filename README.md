@@ -2,10 +2,23 @@
 
 Abstract library to generate angr states from a debugger state
 
+Works with both angr 7 and 8.
+
 ## Install
 
 ```
 pip install angrdbg
+```
+
+### Windows
+
+Before installing angrdbg you must install Visual C++ Redistributable Packages for Visual Studio 2013.
+
+Then type in the command prompt:
+
+```
+py -m pip install capstone-windows
+py -m pip install angrdbg
 ```
 
 ## Usage
@@ -35,6 +48,10 @@ A wrapper around angr to simplify the symbolic values creation and to write the 
 + `instance.to_dbg(found_state)`   transfer to the debugger state the evaluated value of the symbolic value created before with sim
 
 note: memory values are the same that are returned by `state.mem[addr]`
+
+##### Managing the Project
+
+`load_project` and `reload_project` are used to get or lazily create a project based on the current debugger state.
 
 #### Memory type
 

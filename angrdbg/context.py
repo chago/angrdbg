@@ -1,3 +1,8 @@
+######################################################
+# Author: Andrea Fioraldi <andreafioraldi@gmail.com> #
+# License: BSD 2-Clause                              #
+######################################################
+
 import angr
 import logging
 
@@ -17,14 +22,21 @@ project = None
 debugger = Debugger()
 
 
-def load_project():
+def reload_project(input_file=None):
+    global project
+    l.info("creating angr project...")
+    if input_file is None:
+        input_file = debugger.input_file()
+    project = angr.Project(input_file,
+                            main_opts=_MAIN_OPTS(debugger),
+                            load_options={ "auto_load_libs": False })
+    l.info("angr project created.")
+    return project
+
+def load_project(input_file=None):
     global project
     if project == None:
-        l.info("creating angr project...")
-        project = angr.Project(debugger.input_file(),
-                                main_opts=_MAIN_OPTS(debugger),
-                                load_options={ "auto_load_libs": False })
-        l.info("angr project created.")
+        return reload_project(input_file)
     return project
 
 SIMPROCS_FROM_CLE = 0

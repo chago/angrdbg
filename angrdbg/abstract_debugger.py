@@ -1,3 +1,7 @@
+######################################################
+# Author: Andrea Fioraldi <andreafioraldi@gmail.com> #
+# License: BSD 2-Clause                              #
+######################################################
 
 SEG_PROT_R = 4
 SEG_PROT_W = 2
@@ -98,6 +102,9 @@ class Debugger(object):
         raise NotImplementedError()
 
     def get_plt(self):  # return tuple(start_addr, end_addr)
+        raise NotImplementedError()
+    
+    def get_idata(self):  # return tuple(start_addr, end_addr)
         raise NotImplementedError()
 
     # -------------------------------------
